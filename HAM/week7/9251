@@ -1,0 +1,17 @@
+import sys
+
+line1 = sys.stdin.readline().strip()
+line2 = sys.stdin.readline().strip()
+
+num_1 = len(line1)
+num_2 = len(line2)
+dp = [[0]*(num_2+1) for _ in range(num_1+1)]
+
+for i in range(num_1):
+    for j in range(num_2):
+        if(line1[i]==line2[j]):
+            dp[i+1][j+1] = dp[i][j] + 1
+        else:
+            dp[i+1][j+1] = max(dp[i][j+1],dp[i+1][j])
+
+print(dp[num_1][num_2])
